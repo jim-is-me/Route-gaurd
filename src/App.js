@@ -6,6 +6,8 @@ import React, { useState,useEffect } from 'react';
 import { useNavigate,useLocation } from "react-router-dom";
 import bootstrap from 'bootstrap'
 
+import './styles/index.scss';
+
 const Wrapper = ({ children }) => {
   const [auth,setAuth] = useState();
 

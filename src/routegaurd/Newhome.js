@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import '../scss/homepage.scss' 
 
 export default function HomePage() {
 

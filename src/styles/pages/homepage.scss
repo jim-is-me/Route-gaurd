@@ -1,10 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
 
-$card-width: 320px;
-$border-radius: 7px;
-$green: #4CAF50;
-$blue: #008CBA;
-
 body {
     background: #bbdefb;
     font-family: "Poppins", sans-serif;
@@ -49,9 +44,7 @@ footer {
 .submit {background-color: $green;}
 
 
-* {
-  box-sizing: border-box;
-}
+
 
 input[type=text], select, textarea {
   width: 100%;
