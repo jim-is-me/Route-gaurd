@@ -1,9 +1,7 @@
-// import React ,{ useState , useEffect} from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import '../scss/homepage.scss' 
 
 export default function HomePage() {
 
@@ -24,9 +22,8 @@ export default function HomePage() {
     }
 
     const saveTodo = async (todo) => {
-        console.log(todo,"eag")
         if(todo === undefined){
-            console.log("ENter a value")
+            alert("ENter a value")
             return
         }
         if(todo._id !== undefined){
@@ -75,7 +72,7 @@ export default function HomePage() {
         <div className="flexi">
             <div className="flex">
                 {todos.map((todo,index)=>(
-                    <div className="card">
+                    <div className="card" key={index}>
                         
                         <h2>{todo.title}</h2>
                         <p>{todo.description}</p>
@@ -89,30 +86,44 @@ export default function HomePage() {
             <div className="container">
                 <form>
                     <div className="row">
-                    <div className="col-25">
-                        <label for="fname">Title</label>
-                    </div>
-                    <div className="col-75">
-                        <input
-                            defaultValue={edit ? edit.title : ""} 
-                            onChange={(event) => onChange({ name: 'title', value: event.target.value })}
-                            type="text" id="fname" 
-                            name="firstname" placeholder="Your title.." />
-                    </div>
+                        <div className="col-25">
+                            <label for="fname">Title</label>
+                        </div>
+                        <div className="col-75">
+                            <input
+                                defaultValue={edit ? edit.title : ""} 
+                                onChange={(event) => onChange({ name: 'title', value: event.target.value })}
+                                type="text" id="fname" 
+                                name="firstname" placeholder="Your title.." />
+                        </div>
                     </div>
                     <div className="row">
-                    <div className="col-25">
-                        <label for="lname">Description</label>
+                        <div className="col-25">
+                            <label for="lname">Description</label>
+                        </div>
+                        <div className="col-75">
+                            <input 
+                                type="text"
+                                defaultValue={edit ? edit.description : ""} 
+                                onChange={(event) => onChange({ name: 'description', value: event.target.value })}  
+                                id="lname"
+                                name="lastname"
+                                placeholder="Your description.." />
+                        </div>
                     </div>
-                    <div className="col-75">
-                        <input 
-                            type="text"
-                            defaultValue={edit ? edit.description : ""} 
-                            onChange={(event) => onChange({ name: 'description', value: event.target.value })}  
-                            id="lname"
-                            name="lastname"
-                            placeholder="Your description.." />
-                    </div>
+                    <div>
+                        <div className="col-25">
+                            <label for="lname">Description</label>
+                        </div>
+                        <div className="col-75">
+                            <input 
+                                type="date"
+                                defaultValue={edit ? edit.date : ""} 
+                                onChange={(event) => onChange({ name: 'date', value: event.target.value })}  
+                                id="date"
+                                name="date"
+                            />
+                        </div>
                     </div>
                 </form>
                 <footer>
