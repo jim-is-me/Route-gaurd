@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom"
-import HomePage from "./routegaurd/Homepage";
+import HomePage from "./routegaurd/Newhome";
 import Settings from "./routegaurd/Settings";
 import LoginPage from "./routegaurd/loginpage";
 import React, { useState,useEffect } from 'react';
 import { useNavigate,useLocation } from "react-router-dom";
 import bootstrap from 'bootstrap'
+import './styles/index.scss';
 
 const Wrapper = ({ children }) => {
   const [auth,setAuth] = useState();
@@ -16,7 +17,7 @@ const Wrapper = ({ children }) => {
     }
   },[]);
   return <div>
-    <h1>Title 3333</h1>
+    <h1>Todoapp</h1>
     {auth ? children : ""}  <div></div>
   </div>
 }
