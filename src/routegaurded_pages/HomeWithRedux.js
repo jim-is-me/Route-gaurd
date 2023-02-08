@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getTodos } from "../slices/appSlice";
-import axios from "axios";
+import { getTodos, updateTodos, createTodos } from "../slices/appSlice";
+// import axios from "axios";
 
 export default function HomePage() {
 
     const [edit, setEdit] = useState({});
     const dispatch = useDispatch();
     const todos = useSelector(state => state.app.todos)
+    const empty = {}
 
     useEffect(() => {
         dispatch(getTodos());
@@ -23,34 +24,19 @@ export default function HomePage() {
             return
         }
         if(todo._id !== undefined){
-            const result = await axios.put(`http://localhost:8000/todos/${todo._id}`,{
-                data: todo,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                }
-            }).then(resp=>{
+            dispatch(updateTodos(todo, (resp)=> {
                 console.log(resp)
+                dispatch(getTodos());
                 alert("Saved")
-            })
+            }))
         } else {
-            const result = await axios.post(`http://localhost:8000/todos/`,{
-                data: todo,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                }
-            }).then(resp=>{
+            dispatch(createTodos(todo, (resp)=> {
                 console.log(resp)
+                dispatch(getTodos());
                 alert("Saved")
-            })
+            }))
         }
     }
-
-    const handleSubmit = event => {
-        // 👇️ prevent page refresh
-        event.preventDefault();
-    
-        console.log('form submitted ✅');
-    };
 
     const onChange = data => {
         const name = data.name;
@@ -89,8 +75,8 @@ export default function HomePage() {
                             <input
                                 defaultValue={edit ? edit.title : ""} 
                                 onChange={(event) => onChange({ name: 'title', value: event.target.value })}
-                                type="text" id="fname" 
-                                name="firstname" placeholder="Your title.." />
+                                type="text" 
+                                placeholder="Your title.." />
                         </div>
                     </div>
                     <div className="row">
@@ -102,8 +88,6 @@ export default function HomePage() {
                                 type="text"
                                 defaultValue={edit ? edit.description : ""} 
                                 onChange={(event) => onChange({ name: 'description', value: event.target.value })}  
-                                id="lname"
-                                name="lastname"
                                 placeholder="Your description.." />
                         </div>
                     </div>
@@ -116,8 +100,6 @@ export default function HomePage() {
                                 type="date"
                                 defaultValue={edit ? edit.date : ""} 
                                 onChange={(event) => onChange({ name: 'date', value: event.target.value })}  
-                                id="date"
-                                name="date"
                             />
                         </div>
                     </div>

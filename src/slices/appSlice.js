@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from "axios";
 
 export const appSlice = createSlice({
     name: 'app',
@@ -28,5 +29,30 @@ export const getTodos = () => {
     };
 };
 
+export const updateTodos = (todo, callback) => {
+    return () => {
+        axios.put(`http://localhost:8000/todos/${todo._id}`,{
+            data: todo,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            }
+        }).then(resp=>{
+            callback(resp)
+        })
+    }
+}
+
+export const createTodos = (todo, callback) => {
+    return () => {
+        axios.post(`http://localhost:8000/todos/`,{
+            data: todo,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            }
+        }).then(resp=>{
+            callback(resp)
+        })
+    }
+}
 
 export default appSlice.reducer;
