@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom"
-import HomePage from "./routegaurd/Newhome";
-import Settings from "./routegaurd/Settings";
-import LoginPage from "./routegaurd/loginpage";
+import HomePage from "./routegaurded_pages/HomeWithRedux";
+import Settings from "./routegaurded_pages/Settings";
+import LoginPage from "./routegaurded_pages/loginpage";
 import React, { useState,useEffect } from 'react';
 import { useNavigate,useLocation } from "react-router-dom";
 import bootstrap from 'bootstrap'
